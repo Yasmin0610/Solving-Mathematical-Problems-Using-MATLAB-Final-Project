@@ -1,0 +1,29 @@
+function main()
+
+    disp('Calling function of avoda1');
+    avoda1();
+
+    disp('Calling function of avoda2');
+    avoda2();
+
+    disp('Calling function of avoda3');
+    avoda3();
+
+    disp('Calling function of avoda4');
+    avoda4();
+
+    disp('Calling function of avoda5');
+    avoda5();
+
+    disp('Calling function of avoda6');
+    avoda6();
+
+    disp('Calling function of avoda7');
+    avoda7();
+
+    disp('Calling function of avoda8');
+    avoda8();
+
+    disp('Calling function of avoda9');
+    avoda9();
+end

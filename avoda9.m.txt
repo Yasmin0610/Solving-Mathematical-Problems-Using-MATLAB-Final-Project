@@ -1,0 +1,37 @@
+function avoda9()
+
+% Parameters
+v0 = 20;
+theta = pi/4;
+g = 9.81;
+t_end = 3; 
+
+t = linspace(0, t_end, 100);
+
+% Equations
+x = v0 * cos(theta) * t;
+y = v0 * sin(theta) * t - 0.5 * g * t.^2;
+
+% Plot
+figure;
+plot(x, y, 'b');
+hold on;
+title('מסלול פרבולי של כדור');
+xlabel('מרחק אופקי (מטרים)');
+ylabel('גובה אנכי (מטרים)');
+grid on;
+
+ylim([0, max(y)]);
+yline(0, '--k');
+
+%initial ball position
+ball_position = plot(x(1), y(1), 'bo', 'MarkerFaceColor', 'm');
+
+% Animation 
+for i = 1:length(t)
+    set(ball_position, 'XData', x(i), 'YData', y(i));
+    pause(0.03);
+end
+hold off;
+
+end

@@ -1,0 +1,51 @@
+function avoda7()
+
+f = @(x) x.^3 - 2*x.^2 + 4*x - 8;
+
+a = 1; 
+b = 3;
+accuracy = 1e-3;
+
+% Check if the function changes sign over the interval
+ya = f(a);
+y_b = f(b);
+if ya*y_b > 0
+    error('The function does not change sign over the interval');
+end
+
+% Implementation of the bisection method
+while b-a >= accuracy
+    c = (a + b) / 2;
+    y_c = f(c);
+    if y_c == 0
+        a = c;
+        b = c;
+    elseif y_b * y_c > 0
+        b = c;
+        y_b = y_c;
+    else
+        a = c;
+        ya = y_c;
+    end
+end
+
+% root estimate
+c = (a + b) / 2;
+error = abs(b - a);
+y_c = f(c);
+
+% Plot
+hold on;
+fplot(f, [1 3]);
+title('Bisection for Graph of f(x) = x^3 - 2*x^2 + 4*x - 8');
+xlabel('x');
+ylabel('f(x)');
+plot(c, y_c, 'ro');
+legend('f(x) = x^3 - 2*x^2 + 4*x - 8', 'Root');
+grid on;
+hold off;
+
+disp(['Root: ', num2str(c)]);
+disp(['Error: ', num2str(error)]);
+
+end

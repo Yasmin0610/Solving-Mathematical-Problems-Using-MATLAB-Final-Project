@@ -1,0 +1,34 @@
+function avoda6()
+
+students = {'אבי'; 'יוסי'; 'אנה'; 'סופי'; 'אלעד'};
+exam1 = [75; 85; 60; 92; 78];
+exam2 = [80; 90; 70; 95; 82];
+exam3 = [72; 88; 65; 90; 80];
+
+% יצירת טבלת נתונים
+data = table(students, exam1, exam2, exam3);
+
+% חישוב ממוצע הציונים של כל תלמיד
+data.mean_grade = mean([data.exam1, data.exam2, data.exam3], 2);
+
+% חישוב ממוצע הקורס
+course_mean_grade = mean(data.mean_grade);
+
+% הצגת ממוצע הקורס
+fprintf('ממוצע הקורס הוא: %.4f\n', course_mean_grade);
+
+
+% הצגת שמות התלמידים שהממוצע שלהם נמוך מממוצע הקורס
+below_mean_students = data.students(data.mean_grade < course_mean_grade);
+fprintf('התלמידים הם:\n');
+disp(below_mean_students);
+
+
+% חישוב אחוז התלמידים שקיבלו ציון מעל ממוצע הקורס
+above_mean_number = sum(data.mean_grade > course_mean_grade);
+above_mean_percentage = (above_mean_number / height(data)) * 100;
+
+
+fprintf('אחוז התלמידים שקיבלו ציון מעל ממוצע הקורס הוא: %.2f%%\n', above_mean_percentage);
+
+end

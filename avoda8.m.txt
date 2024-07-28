@@ -1,0 +1,36 @@
+function avoda8()
+
+% הגדרת פרמטרים
+C_0 = 1;
+k = log(2) / 3;
+
+% הגדרת הפונקציה לחישוב ריכוז התרופה בזמן t
+C = @(t) C_0 * exp(-k * t);
+
+% חישוב ריכוז התרופה לאחר 6 שעות
+t_6 = 6;
+C_6 = C(t_6);
+fprintf('ריכוז התרופה לאחר 6 שעות הוא: %.4f mg/L\n', C_6);
+
+t = linspace(0, 6, 100);
+C_t = C(t);
+
+% יצירת גרף של ריכוז התרופה לאורך הזמן
+figure;
+plot(t, C_t, 'b-', 'LineWidth', 2);
+hold on;
+
+% הוספת נקודות משמעותיות לגרף
+plot(0, C(0), 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r'); % ריכוז התחלתי
+plot(3, C(3), 'go', 'MarkerSize', 8, 'MarkerFaceColor', 'g'); % ריכוז לאחר 3 שעות
+plot(6, C(6), 'mo', 'MarkerSize', 8, 'MarkerFaceColor', 'm'); % ריכוז לאחר 6 שעות
+
+
+xlabel('זמן (שעות)');
+ylabel('ריכוז התרופה בדם (mg/L)');
+title('ריכוז התרופה בדם לאורך זמן');
+legend('C(t)', 'C(0)', 'C(3)', 'C(6)');
+grid on;
+hold off;
+
+end

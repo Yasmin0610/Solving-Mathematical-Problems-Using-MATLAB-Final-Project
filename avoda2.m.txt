@@ -1,0 +1,41 @@
+function avoda2()
+
+% Parameters
+g = 9.8;
+L = 1;
+theta_0 = pi/4;
+omega_0 = 0;
+
+%solving the differential equation
+tspan = [0 10];
+y_0 = [theta_0; omega_0];
+[t,y] = ode45(@pendulum_system,tspan,y_0);
+
+%Animation
+figure;
+for i = 1:length(t)
+    theta = y(i, 1);
+    x = L*sin(theta);
+    y_pos = -L*cos(theta);
+    plot([0 x], [0 y_pos],'k-','LineWidth',2);
+    hold on;
+    plot(x,y_pos,'ro','MarkerSize',10,'MarkerFaceColor','r');
+    axis equal;
+    axis([-1 1 -1 1]);
+    xlabel('מיקום אופקי (מטרים)');
+    ylabel('מיקום אנכי (מטרים)');
+    title('תנועת המטוטלת');
+    grid on;
+    hold off;
+    pause(0.05);
+end
+
+function dy_dt = pendulum_system(~, y)
+    g = 9.8;
+    L = 1;
+    theta = y(1);
+    omega = y(2);
+    dy_dt = [omega; -(g/L)*sin(theta)];
+end
+
+end

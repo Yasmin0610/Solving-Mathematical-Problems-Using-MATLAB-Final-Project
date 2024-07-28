@@ -1,0 +1,29 @@
+function avoda3()
+
+time = (0:61)';
+temperature = 20 + 10*sin(0.1*time);
+
+temperature = round(temperature, 2);
+
+% creating the table and saving in a file
+data = table(time, temperature);
+writetable(data, 'data.csv');
+
+% loading the file
+data = readtable('data.csv');
+
+% plot
+figure;
+plot(data.time, data.temperature, '-o');
+xlabel('Time (minutes)');
+ylabel('Temperature (°C)');
+title('Temperature as a Function of Time');
+grid on;
+
+% time of max temperature
+[max_temp, index] = max(data.temperature);
+max_temp_time = data.time(index);
+
+% result
+fprintf('The maximum temperature of %.2f°C is reached at %.2f minutes.\n', max_temp, max_temp_time);
+end

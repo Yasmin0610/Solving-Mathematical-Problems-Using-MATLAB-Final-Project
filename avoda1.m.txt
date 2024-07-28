@@ -1,0 +1,38 @@
+function avoda1()
+
+A = input('insert A matrix: ');
+B = input('insert B matrix: ');
+
+% Check if the matrix A is 4x4
+[num1, num2] = size(A);
+if num1 ~= 4 || num2 ~= 4
+    disp('Matrix A is not 4x4');
+    return;
+end
+
+% Check if the matrix B is 1x4
+[size1, size2] = size(B);
+if size1 ~= 1 || size2 ~= 4
+    disp('Matrix B is not 1x4');
+    return;
+end
+
+%calculation the determinant
+d = det(A);
+disp(['The determinant of matrix A is: ', num2str(d)])
+
+if d ~= 0
+    % Calculating the inverse if the determinant is not zero
+    inverse_A = inv(A);
+    disp('The inverse of matrix A is:')
+    disp(inverse_A);
+else
+    disp('Matrix A does not have an inverse');
+end
+
+% Solving the linear system A*x = B
+x = A \ B';
+disp('The solution for vector x is:');
+disp(x);
+
+end

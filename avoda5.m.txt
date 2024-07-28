@@ -1,0 +1,20 @@
+function avoda5()
+
+% Plotting the function
+fplot(@(x) x.^2 + 4*sin(x), [-5, 5])
+hold on
+
+% Finding the minimum
+[x_min, y_min] = fminbnd(@(x) x.^2 + 4*sin(x), -5, 5);
+
+% Plotting the minimum point
+plot(x_min, y_min, 'ro')
+
+title('f(x) = x^2 + 4*sin(x)')
+xlabel('x')
+ylabel('f(x)')
+legend('f(x) = x^2 + 4*sin(x)', 'Minimum')
+grid on
+hold off
+
+end
